@@ -8,7 +8,7 @@ class Hotel {
   final String location;
   final int id;
   final String profilePicture;
-  final int likeDislike;
+  // final LikeDisLike likeDislike;
 
   // final String categories;
   // final String amenities;
@@ -21,7 +21,7 @@ class Hotel {
     required this.id,
     required this.profilePicture,
     // required this.categories,
-    required this.likeDislike,
+    // required this.likeDislike,
     // required this.amenities,
   });
 }

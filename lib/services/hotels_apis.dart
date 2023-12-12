@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:apireset2/model/hotel_categories.dart';
 import 'package:apireset2/model/hotel.dart';
-import 'package:apireset2/model/hotel_likeDislike.dart';
+// import 'package:apireset2/model/hotel_likeDislike.dart';
 import 'package:http/http.dart' as http;
 
 // import '../model/hotel.dart';
@@ -17,20 +17,24 @@ class HotelsApi {
     final json = jsonDecode(body);
     final property = json['property'] as List<dynamic>;
     final hotels = property.map((e) {
-      // final categories = HotelCategory(
-      //   DeluxeDoubleRoomEnsuite: e['categories']['DeluxeDoubleRoomEnsuite'],
-      //   FamilyRoomDeluxeEnsuiteWithkitchenette: e['categories']
-      //       ['FamilyRoomDeluxeEnsuiteWithkitchenette'],
-      //   StandardDoubleRoomEnsuite: e['categories']['StandardDoubleRoomEnsuite'],
-      //   TripleRoomDeluxeEnsuite: e['categories']['TripleRoomDeluxeEnsuite'],
-      //   TwinRoomStandardEnsuite: e['categories']['TwinRoomStandardEnsuite'],
-      // );
-      //
-      final likeDislike = LikeDisLike(
-        likes: e['likeDislike']['likes'],
-        dislikes: e['likeDislike']['dislikes'],
-        userAction: e['likeDislike']['userAction'],
+      final categories = HotelCategory(
+        DeluxeDoubleRoomEnsuite:
+            e['categories']['DeluxeDoubleRoomEnsuite'].toString(),
+        FamilyRoomDeluxeEnsuiteWithkitchenette: e['categories']
+                ['FamilyRoomDeluxeEnsuiteWithkitchenette']
+            .toString(),
+        StandardDoubleRoomEnsuite:
+            e['categories']['StandardDoubleRoomEnsuite'].toString(),
+        TripleRoomDeluxeEnsuite:
+            e['categories']['TripleRoomDeluxeEnsuite'].toString(),
+        TwinRoomStandardEnsuite:
+            e['categories']['TwinRoomStandardEnsuite'].toString(),
       );
+      //
+      // final likeDislike = LikeDisLike(
+      // likes: e['likeDislike']['likes'],
+      // dislikes: e['likeDislike']['dislikes'],
+      // userAction: e['likeDislike']['userAction'],
 
       return Hotel(
         name: e['name'],
@@ -39,9 +43,9 @@ class HotelsApi {
         location: e['location'],
         id: e['id'],
         profilePicture: e['profilePicture'],
+        // likeDislike: e['likeDislike'],
         // categories: e['categories'],
         // amenities: e['categories'][CategoryAmenities] ,
-        likeDislike: e['likeDislike'],
       );
     }).toList();
     return hotels;

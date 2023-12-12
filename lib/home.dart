@@ -1,4 +1,5 @@
 // import 'package:final_h_hotels/Properties/Hotels.dart';
+import 'dart:math';
 import 'dart:ui';
 import 'package:apireset2/model/hotel_likeDislike.dart';
 import 'package:apireset2/model/hotel.dart';
@@ -50,29 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
             final location = hotel.location;
             final description = hotel.description;
             final profilePicture = hotel.profilePicture;
-            final likeDislike = hotel.likeDislike;
+            // final likeDislike = hotel.likeDislike;
             // final manned = hotel.reception == "manned" ? Colors.teal : Colors.tealAccent;
-            return Column(
-              children: [
-                ListTile(
-                  leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(profilePicture)),
-                  title: Text(name),
-                  // tileColor: manned,
-                  subtitle: Text(location),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  color: Colors.redAccent,
-                  child: Text(
-                    description,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-                // Text(likeDislike as String),
-              ],
+            return ListTile(
+              leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(profilePicture)),
+              title: Text(name),
+              // tileColor: manned,
+              subtitle: Text(location),
             );
           }),
 

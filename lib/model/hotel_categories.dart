@@ -86,6 +86,5 @@ class TwinRoomStandardEnsuite {
 
 class CategoryAmenities {
   final String amenities;
-
   CategoryAmenities(this.amenities);
 }
