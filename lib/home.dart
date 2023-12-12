@@ -1,10 +1,10 @@
 // import 'package:final_h_hotels/Properties/Hotels.dart';
-import 'dart:math';
 import 'dart:ui';
 import 'package:apireset2/model/hotel_likeDislike.dart';
 import 'package:apireset2/model/hotel.dart';
 import 'package:apireset2/services/hotels_apis.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,18 +48,237 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             final hotel = hotels[index];
             final name = hotel.name;
+            final reception = hotel.reception;
             final location = hotel.location;
             final description = hotel.description;
             final profilePicture = hotel.profilePicture;
+            const String starIcon = 'assets/images/ant-design_star-filled.svg';
+            const String RedHeartSVG = 'assets/images/red_heart_SVG.svg';
             // final likeDislike = hotel.likeDislike;
             // final manned = hotel.reception == "manned" ? Colors.teal : Colors.tealAccent;
-            return ListTile(
-              leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(profilePicture)),
-              title: Text(name),
-              // tileColor: manned,
-              subtitle: Text(location),
+            SvgPicture svgIcon;
+            return Container(
+              width: 257,
+              height: 327,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 257,
+                    height: 209,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: -183,
+                          top: 0,
+                          child: Container(
+                            width: 487,
+                            height: 259,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(profilePicture),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ), // Profile Picture
+                        Positioned(
+                          left: 213,
+                          top: 12,
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            padding: const EdgeInsets.all(6),
+                            clipBehavior: Clip.antiAlias,
+                            decoration: ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 20,
+                                  height: 20,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          width: 20,
+                                          height: 20,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: const BoxDecoration(),
+                                          child: Stack(children: [
+                                            svgIcon = SvgPicture.asset(
+                                                RedHeartSVG,
+                                                semanticsLabel: 'A yallow star')
+                                          ])),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ), // Red Heart widget
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 118,
+                    padding: const EdgeInsets.all(12),
+                    decoration: const ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
+                      ),
+                      shadows: [
+                        BoxShadow(
+                          color: Color(0x0F121212),
+                          blurRadius: 16,
+                          offset: Offset(4, 4),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                // Hotel name
+                                name,
+                                style: const TextStyle(
+                                  color: Color(0xFF0F0F0F),
+                                  fontSize: 14,
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0.11,
+                                ),
+                              ), // Hotel name
+                              const SizedBox(width: 50),
+                              Container(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(),
+                                      child: Stack(children: [
+                                        svgIcon = SvgPicture.asset(starIcon,
+                                            semanticsLabel: 'A yallow star'),
+                                      ]),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const Text(
+                                      '5.0',
+                                      style: TextStyle(
+                                        color: Color(0xFF0F0F0F),
+                                        fontSize: 12,
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        fontWeight: FontWeight.w700,
+                                        height: 0.12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 233,
+                          height: 30,
+                          child: Text(
+                            location,
+                            style: const TextStyle(
+                              color: Color(0xFF878787),
+                              fontSize: 12,
+                              // fontFamily: 'Plus Jakarta Sans',
+                              fontWeight: FontWeight.w500,
+                              height: 1.1,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        const SizedBox(
+                          width: double.infinity,
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '\$45,05',
+                                  style: TextStyle(
+                                    color: Color(0xFF4C4DDC),
+                                    fontSize: 14,
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0.11,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '001',
+                                  style: TextStyle(
+                                    color: Color(0xFF4C4DDC),
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0.10,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '/night',
+                                  style: TextStyle(
+                                    color: Color(0xFF878787),
+                                    fontSize: 12,
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0.12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
 
