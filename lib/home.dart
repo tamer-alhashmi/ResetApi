@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 1.1,
                             ),
                           ),
-                        ),
+                        ),//location
                         const SizedBox(height: 8),
                         SizedBox(
                           width: double.infinity,
@@ -264,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                        ),
+                        ),  //Room Rate
                       ],
                     ),
                   ),
