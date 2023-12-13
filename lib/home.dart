@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final name = hotel.name;
             final reception = hotel.reception;
             final location = hotel.location;
+            final starRate = hotel.starRate;
             final roomRate = hotel.roomRate;
             final description = hotel.description;
             final profilePicture = hotel.profilePicture;
@@ -204,9 +205,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ]),
                                     ),
                                     const SizedBox(width: 8),
-                                    const Text(
-                                      '5.0',
-                                      style: TextStyle(
+                                      Text(
+                                      starRate as String,
+                                      style:  const TextStyle(
                                         color: Color(0xFF0F0F0F),
                                         fontSize: 12,
                                         fontFamily: 'Plus Jakarta Sans',
