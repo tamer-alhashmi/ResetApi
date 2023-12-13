@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // final manned = hotel.reception == "manned" ? Colors.teal : Colors.tealAccent;
             SvgPicture svgIcon;
             return Container(
+              margin: const EdgeInsets.only(top: 15, bottom: 15),
               width: 370,
               height: 327,
               child: Column(
@@ -122,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                           width: 20,
@@ -236,37 +237,41 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 1.1,
                             ),
                           ),
-                        ),//location
+                        ), //location
                         const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: roomRate,
-                                  style: const TextStyle(
-                                    color: Color(0xFF4C4DDC),
-                                    fontSize: 14,
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0.11,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 5),
+                            width: double.infinity,
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: roomRate,
+                                    style: const TextStyle(
+                                      color: Color(0xFF4C4DDC),
+                                      fontSize: 14,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0.11,
+                                    ),
                                   ),
-                                ),
-                                const TextSpan(
-                                  text: '/night',
-                                  style: TextStyle(
-                                    color: Color(0xFF878787),
-                                    fontSize: 12,
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.12,
+                                  const TextSpan(
+                                    text: '/night',
+                                    style: TextStyle(
+                                      color: Color(0xFF878787),
+                                      fontSize: 12,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.12,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),  //Room Rate
+                        ), //Room Rate
                       ],
                     ),
                   ),
