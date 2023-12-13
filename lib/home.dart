@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final name = hotel.name;
             final reception = hotel.reception;
             final location = hotel.location;
+            final roomRate = hotel.roomRate;
             final description = hotel.description;
             final profilePicture = hotel.profilePicture;
             const String starIcon = 'assets/images/ant-design_star-filled.svg';
@@ -235,14 +236,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        const SizedBox(
+                        SizedBox(
                           width: double.infinity,
                           child: Text.rich(
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '\$45,05',
-                                  style: TextStyle(
+                                  text: roomRate,
+                                  style: const TextStyle(
                                     color: Color(0xFF4C4DDC),
                                     fontSize: 14,
                                     fontFamily: 'Plus Jakarta Sans',
@@ -250,17 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 0.11,
                                   ),
                                 ),
-                                TextSpan(
-                                  text: '001',
-                                  style: TextStyle(
-                                    color: Color(0xFF4C4DDC),
-                                    fontSize: 14,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0.10,
-                                  ),
-                                ),
-                                TextSpan(
+                                const TextSpan(
                                   text: '/night',
                                   style: TextStyle(
                                     color: Color(0xFF878787),

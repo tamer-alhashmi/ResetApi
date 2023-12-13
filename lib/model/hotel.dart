@@ -6,8 +6,10 @@ class Hotel {
   final String reception;
   final String description;
   final String location;
+  final String roomRate;
   final int id;
   final String profilePicture;
+
   // final LikeDisLike likeDislike;
 
   // final String categories;
@@ -18,6 +20,7 @@ class Hotel {
     required this.reception,
     required this.description,
     required this.location,
+    required this.roomRate,
     required this.id,
     required this.profilePicture,
     // required this.categories,
