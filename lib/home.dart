@@ -1,6 +1,6 @@
-// import 'package:final_h_hotels/Properties/Hotels.dart';
-import 'dart:ui';
-import 'package:apireset2/model/hotel_likeDislike.dart';
+import 'package:apireset2/model/hotel_detail.dart';
+
+// import 'package:apireset2/model/hotel_likeDislike.dart';
 import 'package:apireset2/model/hotel.dart';
 import 'package:apireset2/services/hotels_apis.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     fetchHotel();
   }
+
+  final hotelDetail = HotelDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             final hotel = hotels[index];
             final name = hotel.name;
+            final id = hotel.id;
             final reception = hotel.reception;
             final location = hotel.location;
             final starRate = hotel.starRate;
@@ -60,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // final manned = hotel.reception == "manned" ? Colors.teal : Colors.tealAccent;
             SvgPicture svgIcon;
             return Container(
-              margin: const EdgeInsets.only(top: 15, bottom: 15),
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
               width: 370,
               height: 327,
               child: Column(
@@ -68,25 +71,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 370,
-                    height: 209,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
+                  InkWell(
+                    onTap: () {
+                      hotelDetail;
+                    },
+                    child: Container(
+                      width: 370,
+                      height: 209,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: const ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            topRight: Radius.circular(12),
+                          ),
                         ),
                       ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          child: Container(
+                      child: Stack(
+                        children: [
+                          Container(
                             width: 370,
                             height: 259,
                             decoration: BoxDecoration(
@@ -95,54 +99,56 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                          ),
-                        ), // Profile Picture
-                        Positioned(
-                          right: 13,
-                          top: 12,
-                          child: Container(
-                            width: 32,
-                            height: 32,
-                            padding: const EdgeInsets.all(6),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: ShapeDecoration(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100),
+                          ), // Profile Picture
+                          Positioned(
+                            right: 13,
+                            top: 12,
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              padding: const EdgeInsets.all(6),
+                              clipBehavior: Clip.antiAlias,
+                              decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            width: 20,
+                                            height: 20,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: const BoxDecoration(),
+                                            child: Stack(children: [
+                                              svgIcon = SvgPicture.asset(
+                                                  redHeartSVG,
+                                                  semanticsLabel:
+                                                      'A yallow star')
+                                            ])),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                          width: 20,
-                                          height: 20,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(),
-                                          child: Stack(children: [
-                                            svgIcon = SvgPicture.asset(
-                                                redHeartSVG,
-                                                semanticsLabel: 'A yallow star')
-                                          ])),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ), // Red Heart widget
-                      ],
+                          ), // Red Heart widget
+                        ],
+                      ), // Profile picture
                     ),
                   ),
                   Container(
@@ -171,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -190,41 +196,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ), // Hotel name
                               // const SizedBox(width: 50),
-                              Container(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 20,
-                                      height: 20,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(),
-                                      child: Stack(children: [
-                                        svgIcon = SvgPicture.asset(starIcon,
-                                            semanticsLabel: 'A yallow star'),
-                                      ]),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 20,
+                                    height: 20,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(),
+                                    child: Stack(children: [
+                                      svgIcon = SvgPicture.asset(starIcon,
+                                          semanticsLabel: 'A yallow star'),
+                                    ]),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    starRate,
+                                    style: const TextStyle(
+                                      color: Color(0xFF0F0F0F),
+                                      fontSize: 12,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0.12,
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      starRate as String,
-                                      style: const TextStyle(
-                                        color: Color(0xFF0F0F0F),
-                                        fontSize: 12,
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        fontWeight: FontWeight.w700,
-                                        height: 0.12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               )
                             ], // Name & Star
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Container(
+                        SizedBox(
                           width: 300,
                           height: 30,
                           child: Text(
