@@ -55,20 +55,20 @@ class _HomeScreenState extends State<HomeScreen> {
             final description = hotel.description;
             final profilePicture = hotel.profilePicture;
             const String starIcon = 'assets/images/ant-design_star-filled.svg';
-            const String RedHeartSVG = 'assets/images/red_heart_SVG.svg';
+            const String redHeartSVG = 'assets/images/red_heart_SVG.svg';
             // final likeDislike = hotel.likeDislike;
             // final manned = hotel.reception == "manned" ? Colors.teal : Colors.tealAccent;
             SvgPicture svgIcon;
             return Container(
-              width: 257,
+              width: 370,
               height: 327,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: 257,
+                    width: 370,
                     height: 209,
                     clipBehavior: Clip.antiAlias,
                     decoration: const ShapeDecoration(
@@ -83,10 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Stack(
                       children: [
                         Positioned(
-                          left: -183,
+                          left: 0,
                           top: 0,
                           child: Container(
-                            width: 487,
+                            width: 370,
                             height: 259,
                             decoration: BoxDecoration(
                               image: DecorationImage(
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ), // Profile Picture
                         Positioned(
-                          left: 213,
+                          right: 13,
                           top: 12,
                           child: Container(
                             width: 32,
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           decoration: const BoxDecoration(),
                                           child: Stack(children: [
                                             svgIcon = SvgPicture.asset(
-                                                RedHeartSVG,
+                                                redHeartSVG,
                                                 semanticsLabel: 'A yallow star')
                                           ])),
                                     ],
@@ -145,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
+                    width: 370,
                     height: 118,
                     padding: const EdgeInsets.all(12),
                     decoration: const ShapeDecoration(
@@ -173,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: double.infinity,
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
@@ -184,10 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 14,
                                   fontFamily: 'Plus Jakarta Sans',
                                   fontWeight: FontWeight.w700,
-                                  height: 0.11,
+                                  height: 1,
                                 ),
                               ), // Hotel name
-                              const SizedBox(width: 50),
+                              // const SizedBox(width: 50),
                               Container(
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -205,9 +206,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ]),
                                     ),
                                     const SizedBox(width: 8),
-                                      Text(
+                                    Text(
                                       starRate as String,
-                                      style:  const TextStyle(
+                                      style: const TextStyle(
                                         color: Color(0xFF0F0F0F),
                                         fontSize: 12,
                                         fontFamily: 'Plus Jakarta Sans',
@@ -217,13 +218,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                              )
+                            ], // Name & Star
                           ),
                         ),
                         const SizedBox(height: 8),
                         Container(
-                          width: 233,
+                          width: 300,
                           height: 30,
                           child: Text(
                             location,
